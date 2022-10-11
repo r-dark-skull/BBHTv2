@@ -1,9 +1,13 @@
 #!/bin/bash
 
+# FOR Original REFER TO unethicalnoob/BBHTv2
+
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 BLUE=$(tput setaf 4)
 RESET=$(tput sgr0)
+# SET $DESTINATION_DIR Before Proceeding
+$DESTINATION_DIR=$HOME/DIRECTORY        # change this
 
 echo "${RED} ######################################################### ${RESET}"
 echo "${RED} #                 TOOLS FOR BUG BOUNTY                  # ${RESET}"
@@ -72,26 +76,28 @@ echo ""
 } > /dev/null 2>&1
 
 echo "${GREEN} [+] Setting bash_profile aliases ${RESET}"
-curl --silent https://raw.githubusercontent.com/unethicalnoob/aliases/master/bashprofile > ~/.bash_profile
+cat bash_profile >> ~/.bash_profile
+# curl --silent https://raw.githubusercontent.com/unethicalnoob/aliases/master/bashprofile > ~/.bash_profile
 echo "${BLUE} If it doesn't work, set it manually ${RESET}"
 echo ""
 
 echo "${GREEN} [+] Installing Golang ${RESET}"
-if [ ! -f /usr/bin/go ];then
-    cd ~
-    {
-    wget -q -O - https://raw.githubusercontent.com/canha/golang-tools-install-script/master/goinstall.sh | bash
-	export GOROOT=$HOME/.go
-	export PATH=$GOROOT/bin:$PATH
-	export GOPATH=$HOME/go
-    echo 'export GOROOT=$HOME/.go' >> ~/.bash_profile
-    echo 'export GOPATH=$HOME/go' >> ~/.bash_profile
-    echo 'export PATH=$GOPATH/bin:$GOROOT/bin:$PATH' >> ~/.bash_profile
-    source ~/.bash_profile
-    } > /dev/null
-else
-    echo "${BLUE} Golang is already installed${RESET}"
-fi
+sudo apt install golang
+# if [ ! -f /usr/bin/go ];then
+#     cd ~
+#     {
+#     wget -q -O - https://raw.githubusercontent.com/canha/golang-tools-install-script/master/goinstall.sh | bash
+# 	export GOROOT=$HOME/.go
+# 	export PATH=$GOROOT/bin:$PATH
+# 	export GOPATH=$HOME/go
+#     echo 'export GOROOT=$HOME/.go' >> ~/.bash_profile
+#     echo 'export GOPATH=$HOME/go' >> ~/.bash_profile
+#     echo 'export PATH=$GOPATH/bin:$GOROOT/bin:$PATH' >> ~/.bash_profile
+#     source ~/.bash_profile
+#     } > /dev/null
+# else
+#     echo "${BLUE} Golang is already installed${RESET}"
+# fi
 echo "${BLUE} Done installing Golang ${RESET}"
 echo ""
 
@@ -99,65 +105,65 @@ echo ""
 echo "${GREEN} [+] Installing Subdomain Enum tools ${RESET}"
 {
 go get -u github.com/projectdiscovery/subfinder/cmd/subfinder
-git clone https://github.com/Healdb/Elevate.git ~/tools/Elevate
+git clone https://github.com/Healdb/Elevate.git $DESTINATION_DIR/Elevate
 go get -u github.com/harleo/knockknock
 go get -u github.com/tomnomnom/assetfinder
 sudo pip3 install spyse.py
 
 subscraper(){
-git clone https://github.com/m8r0wn/subscraper ~/tools/subscraper
-cd ~/tools/subscraper
+git clone https://github.com/m8r0wn/subscraper $DESTINATION_DIR/subscraper
+cd $DESTINATION_DIR/subscraper
 sudo python3 setup.py install
 }
 subscraper
 
 subdomainizer(){
-git clone https://github.com/nsonaniya2010/SubDomainizer.git ~/tools/SubDomainizer
-cd ~/tools/SubDomainizer && chmod +x SubDomainizer.py
+git clone https://github.com/nsonaniya2010/SubDomainizer.git $DESTINATION_DIR/SubDomainizer
+cd $DESTINATION_DIR/SubDomainizer && chmod +x SubDomainizer.py
 sudo pip3 install -r requirements.txt
 }
 subdomainizer
 
 crtsh(){
-git clone https://github.com/YashGoti/crtsh.py ~/tools/crtsh.py
-cd ~/tools/crtsh.py && sudo pip3 install -r requirements.txt
+git clone https://github.com/YashGoti/crtsh.py $DESTINATION_DIR/crtsh.py
+cd $DESTINATION_DIR/crtsh.py && sudo pip3 install -r requirements.txt
 }
 crtsh
 
 sublert(){
-git clone https://github.com/yassineaboukir/sublert.git ~/tools/sublert
+git clone https://github.com/yassineaboukir/sublert.git $DESTINATION_DIR/sublert
 sudo pip3 install virtualenv setuptools
 virtualenv sublert
 source sublert/bin/activate
-cd ~/tools/sublert
+cd $DESTINATION_DIR/sublert
 sudo pip3 install -r requirements.txt
 }
 sublert
 
 subsh(){
-git clone https://github.com/cihanmehmet/sub.sh.git ~/tools/subsh
-cd ~/tools/subsh && chmod +x sub.sh
+git clone https://github.com/cihanmehmet/sub.sh.git $DESTINATION_DIR/subsh
+cd $DESTINATION_DIR/subsh && chmod +x sub.sh
 }
 subsh
 
 OneforAll(){
-git clone https://github.com/shmilylty/OneForAll.git ~/tools/OneForAll
-cd ~/tools/OneForAll
+git clone https://github.com/shmilylty/OneForAll.git $DESTINATION_DIR/OneForAll
+cd $DESTINATION_DIR/OneForAll
 sudo python3 -m pip install -U pip3 setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
 sudo pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 }
 OneForAll
 
 shosubgo(){
-git clone https://github.com/incogbyte/shosubgo.git ~/tools/shosubgo
-cd ~/tools/shosubgo/
+git clone https://github.com/incogbyte/shosubgo.git $DESTINATION_DIR/shosubgo
+cd $DESTINATION_DIR/shosubgo/
 go build main.go && mv main shosubgo && sudo mv shosubgo /usr/bin/
 }
 shosubgo
 
 sublister(){
-git clone https://github.com/aboul3la/Sublist3r.git ~/tools/Sublist3r
-cd ~/tools/Sublist3r
+git clone https://github.com/aboul3la/Sublist3r.git $DESTINATION_DIR/Sublist3r
+cd $DESTINATION_DIR/Sublist3r
 sudo pip3 install -r requirements.txt
 }
 sublister
@@ -193,15 +199,15 @@ go get -u github.com/projectdiscovery/httpx/cmd/httpx
 
 
 massdns(){
-git clone https://github.com/blechschmidt/massdns.git ~/tools/massdns
-cd ~/tools/massdns
+git clone https://github.com/blechschmidt/massdns.git $DESTINATION_DIR/massdns
+cd $DESTINATION_DIR/massdns
 make
 }
 massdns
 
 knockpy(){
-git clone https://github.com/guelfoweb/knock.git ~/tools/knockpy
-cd ~/tools/knockpy
+git clone https://github.com/guelfoweb/knock.git $DESTINATION_DIR/knockpy
+cd $DESTINATION_DIR/knockpy
 sudo python setup.py install
 }
 knockpy
@@ -214,7 +220,7 @@ echo "${GREEN} [+] Installing Subdomain Takeover tools ${RESET}"
 {
 go get -u github.com/Ice3man543/SubOver
 pip3 install autosubtakeover
-git clone https://github.com/antichown/subdomain-takeover.git ~/tools/STO
+git clone https://github.com/antichown/subdomain-takeover.git $DESTINATION_DIR/STO
 go get -u github.com/anshumanbh/tko-subs
 go get -u github.com/haccer/subjack
 } > /dev/null 2>&1
@@ -227,45 +233,45 @@ echo "${GREEN} [+] Installing Cloud workflow Tools ${RESET}"
 {
 gem install aws_recon
 sudo pip3 install awscli --upgrade --user
-git clone https://github.com/gwen001/s3-buckets-finder.git ~/tools/s3-buckets-finder
-git clone https://github.com/nahamsec/lazys3.git ~/tools/lazys3
-git clone https://github.com/ghostlulzhacks/s3brute.git ~/tools/s3brute
-git clone https://github.com/greycatz/CloudUnflare.git ~/tools/CloudUnflare
-git clone https://github.com/fellchase/flumberboozle ~/tools/flumberboozle
-git clone https://github.com/appsecco/spaces-finder.git ~/tools/spaces-finder
+git clone https://github.com/gwen001/s3-buckets-finder.git $DESTINATION_DIR/s3-buckets-finder
+git clone https://github.com/nahamsec/lazys3.git $DESTINATION_DIR/lazys3
+git clone https://github.com/ghostlulzhacks/s3brute.git $DESTINATION_DIR/s3brute
+git clone https://github.com/greycatz/CloudUnflare.git $DESTINATION_DIR/CloudUnflare
+git clone https://github.com/fellchase/flumberboozle $DESTINATION_DIR/flumberboozle
+git clone https://github.com/appsecco/spaces-finder.git $DESTINATION_DIR/spaces-finder
 pip3 install festin
 
 slurp(){
-git clone https://github.com/avineshwar/slurp.git ~/tools/slurp
-cd ~/tools/slurp
+git clone https://github.com/avineshwar/slurp.git $DESTINATION_DIR/slurp
+cd $DESTINATION_DIR/slurp
 go build main.go && mv main slurp
 }
 slurp
 
 cloud_enum(){
-git clone https://github.com/initstring/cloud_enum.git ~/tools/cloud_enum
-cd ~/tools/cloud_enum && pip3 install -r requirements.txt
+git clone https://github.com/initstring/cloud_enum.git $DESTINATION_DIR/cloud_enum
+cd $DESTINATION_DIR/cloud_enum && pip3 install -r requirements.txt
 }
 cloud_enum
 
 S3Scanner(){
-git clone https://github.com/sa7mon/S3Scanner.git ~/tools/S3Scanner
-cd ~/tools/S3Scanner
+git clone https://github.com/sa7mon/S3Scanner.git $DESTINATION_DIR/S3Scanner
+cd $DESTINATION_DIR/S3Scanner
 sudo pip3 install -r requirements.txt
 }
 S3Scanner
 
 cloudflair(){
-git clone https://github.com/christophetd/CloudFlair.git ~/tools/CloudFlair
-cd ~/tools/CloudFlair && chmod +x cloudflair.py
+git clone https://github.com/christophetd/CloudFlair.git $DESTINATION_DIR/CloudFlair
+cd $DESTINATION_DIR/CloudFlair && chmod +x cloudflair.py
 sudo pip3 install -r requirements.txt
 }
 cloudflair
 
 
 GCPBucketBrute(){
-git clone https://github.com/RhinoSecurityLabs/GCPBucketBrute.git ~/tools/GCPBucketBrute
-cd ~/tools/GCPBucketBrute
+git clone https://github.com/RhinoSecurityLabs/GCPBucketBrute.git $DESTINATION_DIR/GCPBucketBrute
+cd $DESTINATION_DIR/GCPBucketBrute
 sudo python3 -m pip install -r requirements.txt
 }
 GCPBucketBrute
@@ -278,7 +284,7 @@ echo "${GREEN} [+] Installing Fuzzing tools ${RESET}"
 {
 go get -u github.com/OJ/gobuster
 go get -u github.com/ffuf/ffuf
-git clone https://github.com/maurosoria/dirsearch.git ~/tools/dirsearch
+git clone https://github.com/maurosoria/dirsearch.git $DESTINATION_DIR/dirsearch
 sudo apt-fast install wfuzz
 go get -u github.com/tomnomnom/meg
 go get -u github.com/tomnomnom/waybackurls
@@ -287,8 +293,8 @@ sudo apt-fast install -y dirb
 go get -u github.com/lc/gau
 
 secretfinder(){
-git clone https://github.com/m4ll0k/SecretFinder.git ~/tools/SecretFinder
-cd ~/tools/SecretFinder && chmod +x secretfinder
+git clone https://github.com/m4ll0k/SecretFinder.git $DESTINATION_DIR/SecretFinder
+cd $DESTINATION_DIR/SecretFinder && chmod +x secretfinder
 sudo pip3 install -r requirements.txt
 }
 secretfinder
@@ -301,8 +307,8 @@ echo "${GREEN} [+] Visual Inspection tools ${RESET}"
 go get -u github.com/michenriksen/aquatone
 go get -u github.com/sensepost/gowitness
 go get -u github.com/tomnomnom/concurl
-git clone https://github.com/FortyNorthSecurity/EyeWitness.git ~/tools/EyeWitness
-git clone https://github.com/breenmachine/httpscreenshot.git ~/tools/httpscreenshot
+git clone https://github.com/FortyNorthSecurity/EyeWitness.git $DESTINATION_DIR/EyeWitness
+git clone https://github.com/breenmachine/httpscreenshot.git $DESTINATION_DIR/httpscreenshot
 } > /dev/null
 echo "${BLUE} Done ${RESET}"
 echo ""
@@ -312,25 +318,25 @@ echo "${GREEN} [+] Content Discovery tools ${RESET}"
 go get -u github.com/jaeles-project/gospider
 pip3 install scrapy
 go get -u github.com/m4ll0k/Aron
-git clone https://github.com/s0md3v/Arjun.git ~/tools/Arjun
+git clone https://github.com/s0md3v/Arjun.git $DESTINATION_DIR/Arjun
 
 
 photon(){
-git clone https://github.com/s0md3v/Photon.git ~/tools/Photon
-cd ~/tools/Photon
+git clone https://github.com/s0md3v/Photon.git $DESTINATION_DIR/Photon
+cd $DESTINATION_DIR/Photon
 sudo pip3 install -r requirements.txt
 }
 
 paramspider(){
-git clone https://github.com/devanshbatham/ParamSpider ~/tools/ParamSpider
-cd ~/tools/ParamSpider
+git clone https://github.com/devanshbatham/ParamSpider $DESTINATION_DIR/ParamSpider
+cd $DESTINATION_DIR/ParamSpider
 sudo pip3 install -r requirements.txt
 }
 paramspider
 
 hakrawler(){
-git clone https://github.com/hakluke/hakrawler.git ~/tools/hakrawler
-cd ~/tools/hakrawler
+git clone https://github.com/hakluke/hakrawler.git $DESTINATION_DIR/hakrawler
+cd $DESTINATION_DIR/hakrawler
 go build main.go && mv main hakrawler
 sudo mv hakrawler /usr/bin/
 }
@@ -341,36 +347,36 @@ echo ""
 
 echo "${GREEN} [+] Installing CMS Tools ${RESET}"
 {
-git clone https://github.com/rezasp/joomscan.git ~/tools/CMS/Joomscan
+git clone https://github.com/rezasp/joomscan.git $DESTINATION_DIR/CMS/Joomscan
 sudo gem install wpscan
-git clone https://github.com/0ang3el/aem-hacker.git ~/tools/CMS/aem-hacker
+git clone https://github.com/0ang3el/aem-hacker.git $DESTINATION_DIR/CMS/aem-hacker
 sudo pip3 install droopescan
 
 CMSmap(){
-git clone https://github.com/Dionach/CMSmap.git ~/tools/CMS/CMSmap
-cd ~/tools/CMS/CMSmap
+git clone https://github.com/Dionach/CMSmap.git $DESTINATION_DIR/CMS/CMSmap
+cd $DESTINATION_DIR/CMS/CMSmap
 sudo pip3 install .
 }
 CMSmap
 
 wig(){
-git clone https://github.com/jekyc/wig.git ~/tools/CMS/wig
-cd ~/tools/wig
+git clone https://github.com/jekyc/wig.git $DESTINATION_DIR/CMS/wig
+cd $DESTINATION_DIR/wig
 sudo python3 setup.py install
 }
 wig
 
 CMSeeK(){
-git clone https://github.com/Tuhinshubhra/CMSeeK.git ~/tools/CMS/CMSeeK
-cd ~/tools/CMS/CMSeek
+git clone https://github.com/Tuhinshubhra/CMSeeK.git $DESTINATION_DIR/CMS/CMSeeK
+cd $DESTINATION_DIR/CMS/CMSeek
 sudo python3 -m pip install -r requirements.txt
 }
 CMSeeK
 
 
 drupwn(){
-git clone https://github.com/immunIT/drupwn.git ~/tools/CMS/drupwn
-cd ~/tools/CMS/drupwn
+git clone https://github.com/immunIT/drupwn.git $DESTINATION_DIR/CMS/drupwn
+cd $DESTINATION_DIR/CMS/drupwn
 sudo python3 setup.py install
 }
 drupwn
@@ -385,28 +391,28 @@ go get -u github.com/eth0izzle/shhgit
 pip3 install truffleHog
 
 gitscanner(){
-git clone https://github.com/HightechSec/git-scanner ~/tools/GIT/git-scanner
-cd ~/tools/GIT/git-scanner && chmod +x gitscanner.sh
+git clone https://github.com/HightechSec/git-scanner $DESTINATION_DIR/GIT/git-scanner
+cd $DESTINATION_DIR/GIT/git-scanner && chmod +x gitscanner.sh
 }
 gitscanner
 
 gitgraber(){
-git clone https://github.com/hisxo/gitGraber.git ~/tools/GIT/gitGraber
-cd ~/tools/GIT/gitGraber && chmod +x gitGraber.py
+git clone https://github.com/hisxo/gitGraber.git $DESTINATION_DIR/GIT/gitGraber
+cd $DESTINATION_DIR/GIT/gitGraber && chmod +x gitGraber.py
 sudo pip3 install -r requirements.txt
 }
 gitgraber
 
 githound(){
-git clone https://github.com/tillson/git-hound.git ~/tools/GIT/git-hound
-cd ~/tools/GIT/git-hound
+git clone https://github.com/tillson/git-hound.git $DESTINATION_DIR/GIT/git-hound
+cd $DESTINATION_DIR/GIT/git-hound
 sudo go build main.go && mv main githound
 }
 githound
 
 gitsearch(){
-git clone https://github.com/gwen001/github-search.git ~/tools/GIT/github-search
-cd ~/tools/GIT/github-search
+git clone https://github.com/gwen001/github-search.git $DESTINATION_DIR/GIT/github-search
+cd $DESTINATION_DIR/GIT/github-search
 sudo pip3 install -r  requirements3.txt
 }
 gitsearch
@@ -417,14 +423,14 @@ echo ""
 
 echo "${GREEN} [+] Downloading Frameworks ${RESET}"
 {
-git clone https://github.com/1N3/Sn1per.git ~/tools/Frameworks/Sn1per
-git clone https://github.com/j3ssie/Osmedeus.git ~/tools/Frameworks/osmedeus
-git clone https://github.com/WhaleShark-Team/cobra.git ~/tools/Frameworks/Cobra
-git clone https://github.com/0xinfection/tidos-framework.git ~/tools/Frameworks/TIDoS-Framework
-git clone https://github.com/m4ll0k/WAScan.git ~/tools/Frameworks/WAScan
-git clone https://github.com/1N3/BlackWidow.git ~/tools/Frameworks/BlackWidow
-git clone --recursive https://github.com/screetsec/Sudomy.git ~/tools/Frameworks/Sudomy
-git clone https://github.com/dwisiswant0/scant3r.git ~/tools/Frameworks/scant3r
+git clone https://github.com/1N3/Sn1per.git $DESTINATION_DIR/Frameworks/Sn1per
+git clone https://github.com/j3ssie/Osmedeus.git $DESTINATION_DIR/Frameworks/osmedeus
+git clone https://github.com/WhaleShark-Team/cobra.git $DESTINATION_DIR/Frameworks/Cobra
+git clone https://github.com/0xinfection/tidos-framework.git $DESTINATION_DIR/Frameworks/TIDoS-Framework
+git clone https://github.com/m4ll0k/WAScan.git $DESTINATION_DIR/Frameworks/WAScan
+git clone https://github.com/1N3/BlackWidow.git $DESTINATION_DIR/Frameworks/BlackWidow
+git clone --recursive https://github.com/screetsec/Sudomy.git $DESTINATION_DIR/Frameworks/Sudomy
+git clone https://github.com/dwisiswant0/scant3r.git $DESTINATION_DIR/Frameworks/scant3r
 } > /dev/null 2>&1
 echo "${BLUE} Done ${RESET}"
 echo ""
@@ -434,19 +440,19 @@ echo "${GREEN} [+] JS Enum Tools ${RESET}"
 {
 go get github.com/003random/getJS
 go get -u github.com/lc/subjs
-git clone https://github.com/dark-warlord14/JSScanner.git ~/tools/JSScanner
-git clone https://github.com/zseano/JS-Scan.git ~/tools/JS-Scan
-git clone https://github.com/robre/scripthunter.git ~/tools/jshunter
+git clone https://github.com/dark-warlord14/JSScanner.git $DESTINATION_DIR/JSScanner
+git clone https://github.com/zseano/JS-Scan.git $DESTINATION_DIR/JS-Scan
+git clone https://github.com/robre/scripthunter.git $DESTINATION_DIR/jshunter
 
 JSParser(){
-git clone https://github.com/nahamsec/JSParser.git ~/tools/JSParser
-cd ~/tools/JSParser
+git clone https://github.com/nahamsec/JSParser.git $DESTINATION_DIR/JSParser
+cd $DESTINATION_DIR/JSParser
 sudo python3 setup.py install
 }
 
 LinkFinder(){
-git clone https://github.com/GerbenJavado/LinkFinder.git ~/tools/LinkFinder
-cd ~/tools/LinkFinder
+git clone https://github.com/GerbenJavado/LinkFinder.git $DESTINATION_DIR/LinkFinder
+cd $DESTINATION_DIR/LinkFinder
 sudo pip3 install -r requirements.txt
 sudo python3 setup.py install
 }
@@ -459,24 +465,24 @@ echo "${GREEN} [+] Fingerprinting & CVE tools ${RESET}"
 sudo pip3 install webtech
 go get -u github.com/projectdiscovery/chaos-client/cmd/chaos
 go get -u github.com/projectdiscovery/nuclei/cmd/nuclei
-git clone https://github.com/projectdiscovery/nuclei-templates ~/tools/nuclei-templates
+git clone https://github.com/projectdiscovery/nuclei-templates $DESTINATION_DIR/nuclei-templates
 go get -u github.com/tomnomnom/gf
 
 gfp(){
 cd ~/tools
 git clone https://github.com/1ndianl33t/Gf-Patterns
-mv ~/tools/Gf-Patterns/*.json /root/.gf
-rm -rf ~/tools/Gf-Patterns
+mv $DESTINATION_DIR/Gf-Patterns/*.json /root/.gf
+rm -rf $DESTINATION_DIR/Gf-Patterns
 wget https://raw.githubusercontent.com/devanshbatham/ParamSpider/master/gf_profiles/potential.json;
-mv ~/tools/potential.json /root/.gf;
+mv $DESTINATION_DIR/potential.json /root/.gf;
 echo 'source $GOPATH/src/github.com/tomnomnom/gf/gf-completion.bash' >> ~/.bashrc;
 cp -r $GOPATH/src/github.com/tomnomnom/gf/examples ~/.gf;
 }
 gfp
 
 waf(){
-git clone https://github.com/EnableSecurity/wafw00f.git ~/tools/waff00f
-cd ~/tools/wafw00f
+git clone https://github.com/EnableSecurity/wafw00f.git $DESTINATION_DIR/waff00f
+cd $DESTINATION_DIR/wafw00f
 sudo python3 setup.py install
 }
 waf
@@ -492,11 +498,11 @@ sudo apt-fast install -y nikto
 sudo apt-fast install -y masscan
 go get -u github.com/j3ssie/metabigor
 go get -u github.com/projectdiscovery/naabu/cmd/naabu
-
+``
 
 asnlookup(){
-git clone https://github.com/yassineaboukir/asnlookup.git ~/tools/asnlookup
-cd ~/tools/asnlookup
+git clone https://github.com/yassineaboukir/asnlookup.git $DESTINATION_DIR/asnlookup
+cd $DESTINATION_DIR/asnlookup
 sudo pip3 install -r requirements.txt
 }
 } > /dev/null 2>&1
@@ -506,7 +512,7 @@ echo ""
 echo "${GREEN} [+] Downloading wordlists ${RESET}"
 {
 git clone https://github.com/assetnote/commonspeak2-wordlists ~/wordlists/commonspeak2-wordlists
-cd ~/tools/wordlists/ && wget https://raw.githubusercontent.com/Mad-robot/recon-tools/master/dicc.txt
+cd $DESTINATION_DIR/wordlists/ && wget https://raw.githubusercontent.com/Mad-robot/recon-tools/master/dicc.txt
 git clone https://github.com/1N3/IntruderPayloads ~/wordlists/IntruderPayloads
 git clone https://github.com/swisskyrepo/PayloadsAllTheThings ~/wordlists/PayloadsAllTheThings
 git clone https://github.com/danielmiessler/SecLists ~/wordlists/SecLists
@@ -533,9 +539,10 @@ echo ""
 
 echo "${GREEN} [+] Installing Miscellaneous tools ${RESET}"
 {
-git clone https://github.com/lijiejie/ds_store_exp/ ~/tools/ds_store_exp
+git clone https://github.com/lijiejie/ds_store_exp/ $DESTINATION_DIR/ds_store_exp
 } > /dev/null 2>&1
 
 echo "${RED} use the command 'source ~/.bash_profile' for the shell functions to work ${RESET}"
 echo ""
 echo "${RED}      ALL THE THANKS TO THE BEST PEOPLE OF THE INFOSEC COMMUNITY   ${RESET}"
+
