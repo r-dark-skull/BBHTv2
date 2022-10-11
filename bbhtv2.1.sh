@@ -36,18 +36,18 @@ sudo add-apt-repository -y ppa:apt-fast/stable < /dev/null
 sudo echo debconf apt-fast/maxdownloads string 16 | sudo debconf-set-selections
 sudo echo debconf apt-fast/dlflag boolean true | sudo debconf-set-selections
 sudo echo debconf apt-fast/aptmanager string apt-get | sudo debconf-set-selections
-sudo apt install -y apt-fast
+# sudo apt install -y apt-fast
 sudo apt install -y aptitude gnupg
 
 #Entry for kali repo's
-sudo sh -c "echo 'deb https://http.kali.org/kali kali-rolling main non-free contrib' > /etc/apt/sources.list.d/kali.list"
-wget 'https://archive.kali.org/archive-key.asc'
-sudo apt-key add archive-key.asc
-sudo sh -c "echo 'Package: *'>/etc/apt/preferences.d/kali.pref; echo 'Pin: release a=kali-rolling'>>/etc/apt/preferences.d/kali.pref; echo 'Pin-Priority: 50'>>/etc/apt/preferences.d/kali.pref"
-sudo apt update
+# sudo sh -c "echo 'deb https://http.kali.org/kali kali-rolling main non-free contrib' > /etc/apt/sources.list.d/kali.list"
+# wget 'https://archive.kali.org/archive-key.asc'
+# sudo apt-key add archive-key.asc
+# sudo sh -c "echo 'Package: *'>/etc/apt/preferences.d/kali.pref; echo 'Pin: release a=kali-rolling'>>/etc/apt/preferences.d/kali.pref; echo 'Pin-Priority: 50'>>/etc/apt/preferences.d/kali.pref"
+# sudo apt update
 
 #Entry for tools installed from kali repositories
-sudo aptitude install -t kali-rolling wpscan #Wordpress Automated Vulnerability Scanner
+sudo apt wpscan #Wordpress Automated Vulnerability Scanner
 #Using above method you can install any supported tool from kali's repositories as per your need :)
 
 
