@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# FOR Original REFER TO unethicalnoob/BBHTv2
+FOR Original REFER TO unethicalnoob/BBHTv2
 
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
@@ -277,7 +277,6 @@ echo "${GREEN} [+] Installing Cloud workflow Tools ${RESET}"
 echo "${BLUE} Done ${RESET}"
 echo ""
 
-
 echo "${GREEN} [+] Installing Fuzzing tools ${RESET}"
 {
     sudo apt install -y gobuster ffuf dirsearch wfuzz dirb
@@ -298,20 +297,20 @@ echo "${GREEN} [+] Installing Fuzzing tools ${RESET}"
 echo "${BLUE} Done ${RESET}"
 echo ""
 
-
 echo "${GREEN} [+] Visual Inspection tools ${RESET}"
-{
+# {
     cd $DESTINATION_DIR
     go get -u github.com/michenriksen/aquatone
     go install github.com/sensepost/gowitness@latest
-    go get -u github.com/tomnomnom/concurl
+    go get -u github.com/tomnomnom/concurl      #
     sudo apt install -y eyewitness
     
     cd $DESTINATION_DIR
     git clone https://github.com/breenmachine/httpscreenshot.git
     cd httpscreenshot
+    sudo ./install-dependencies.sh
     sudo pip3 install -r requirements.txt
-} > /dev/null
+# } > /dev/null
 echo "${BLUE} Done ${RESET}"
 echo ""
 
@@ -440,10 +439,10 @@ echo "${GREEN} [+] Downloading Frameworks ${RESET}"
     git clone https://github.com/j3ssie/Osmedeus.git
     git clone https://github.com/WhaleShark-Team/cobra.git
     git clone https://github.com/0xinfection/tidos-framework.git
-    git clone https://github.com/m4ll0k/WAScan.git 
+    git clone https://github.com/infosecsecurity/Spaghetti.git
     git clone https://github.com/1N3/BlackWidow.git 
     git clone --recursive https://github.com/screetsec/Sudomy.git 
-    git clone https://github.com/dwisiswant0/scant3r.git
+    git clone https://github.com/knassar702/scant3r.git
 } > /dev/null 2>&1
 echo "${BLUE} Done ${RESET}"
 echo ""
